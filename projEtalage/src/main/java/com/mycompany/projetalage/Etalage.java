@@ -18,7 +18,7 @@ public abstract class Etalage {
             this.surface = laSurface;
             this.num = leNum;    
         } else {
-            throw new ErreurSurEtalage(this.toString(leNum, laSurface));
+            throw new ErreurSurEtalage(String.format("Numéro : %d\nSurface : %f", this.num, this.surface));
         }
         
     }
@@ -47,9 +47,6 @@ public abstract class Etalage {
     @Override public String toString(){ // car hérite de la classe object
         return String.format("Numéro : %d\nSurface : %f", this.num, this.surface);
     }
-    protected String toString(int num, float surface){
-        return String.format("Numéro : %d\nSurface : %f", num, surface);
-    }    
     public void setNum(int leNum){
         num = leNum;
     }
