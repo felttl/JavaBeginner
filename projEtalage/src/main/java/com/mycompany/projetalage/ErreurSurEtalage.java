@@ -5,7 +5,7 @@
 package com.mycompany.projetalage;
 
 /**
- *
+ * 
  * @author felix
  */
 public class ErreurSurEtalage extends Exception {

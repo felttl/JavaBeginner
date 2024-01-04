@@ -51,8 +51,6 @@ public class EtalageSaisonnier extends Etalage {
                     System.out.println("valeur non trouvé dans la table SQL");
                     trouve = false;
                 }
-                    
-                
             }
             
         } catch(ClassNotFoundException | SQLException e){

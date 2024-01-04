@@ -47,11 +47,13 @@ public class EtalagePermanent extends Etalage {
      * variable d’instance « num » et qui valorise les autres variables d’instance si la recherche est
      * fructueuse
      * @return si valeur trouvé
-     * @throws ClassNotFoundException
-     * @throws Exception 
+     * @throws ClassNotFoundException renvoie d'erreur
+     * @throws Exception renvoie d'erreur
      */
-    public boolean chargerAvecId() throws ClassNotFoundException, Exception{
+    @Override public boolean chargerAvecId() throws ClassNotFoundException, Exception{
         boolean trouve = false;
+        
+        
         
         
         
