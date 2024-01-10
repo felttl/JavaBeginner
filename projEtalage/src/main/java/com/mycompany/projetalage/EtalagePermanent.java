@@ -4,6 +4,8 @@
  */
 package com.mycompany.projetalage;
 
+import java.sql.DriverManager;
+import java.sql.*;
 
 /**
  *
@@ -52,7 +54,14 @@ public class EtalagePermanent extends Etalage {
      */
     @Override public boolean chargerAvecId() throws ClassNotFoundException, Exception{
         boolean trouve = false;
-        
+        Class.forName("com.mysql.jdbc.Driver");
+        try(Connection objConnection = new DriverManager.getConnection("jdbc:mysql://localhost/test", "root", "root")){
+            request.next();
+            this.num=0;
+            this.surface=0;
+        } catch{
+            
+        }
         
         
         

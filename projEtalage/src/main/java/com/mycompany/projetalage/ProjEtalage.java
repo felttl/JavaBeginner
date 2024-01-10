@@ -11,7 +11,6 @@ package com.mycompany.projetalage;
 public class ProjEtalage {
 
     public static void main(String[] args) {
-        // on créer les données
-        // etc ...
+        
     }
 }
