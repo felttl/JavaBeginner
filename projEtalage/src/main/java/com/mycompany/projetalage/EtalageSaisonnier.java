@@ -40,13 +40,12 @@ public class EtalageSaisonnier extends Etalage {
             Class.forName("com.mysql.jdbc.Driver");
             try(Connection objConnection = DriverManager.getConnection("jdbc:mysql://localhost/test", "root", "root")){
                 Statement bd=objConnection.createStatement();
-                String laRequete = String.format("SELECT nums FROM etals WHERE nums=%d", this.getNum());
+                String laRequete = String.format("SELECT surfs, nbjours FROM etals WHERE nums=%d", this.getNum());
                 ResultSet request=bd.executeQuery(laRequete);
                 request.next();
                 if (request.next()){
-                    this.setNum(request.getInt(1));
-                    this.setSurface(request.getFloat(2));
-                    this.nbJours = request.getInt(3);
+                    this.setSurface(request.getFloat(1));
+                    this.nbJours = request.getInt(2);
                 } else {
                     System.out.println("valeur non trouvé dans la table SQL");
                     trouve = false;
@@ -54,7 +53,7 @@ public class EtalageSaisonnier extends Etalage {
             }
             
         } catch(ClassNotFoundException | SQLException e){
-            System.out.println(e.getMessage());
+            throw new ErreurSurEtalage("problème de chargement des données");
         }
         return trouve;
         

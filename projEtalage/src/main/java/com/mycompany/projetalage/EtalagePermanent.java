@@ -2,15 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.projetalage;
 
-import java.sql.DriverManager;
-import java.sql.*;
 
 /**
  *
  * @author felix
  */
+
+package com.mycompany.projetalage;
+import java.sql.*;
+
 public class EtalagePermanent extends Etalage {
     private static float[] lesTarifsZones = {57.33f,65.25F,75.30F};
     private int numZone = 0;
@@ -55,12 +56,21 @@ public class EtalagePermanent extends Etalage {
     @Override public boolean chargerAvecId() throws ClassNotFoundException, Exception{
         boolean trouve = false;
         Class.forName("com.mysql.jdbc.Driver");
-        try(Connection objConnection = new DriverManager.getConnection("jdbc:mysql://localhost/test", "root", "root")){
-            request.next();
-            this.num=0;
-            this.surface=0;
-        } catch{
-            
+        try{
+            Connection objConnection = new DriverManager.getConnection("jdbc:mysql://localhost/test", "root", "root");
+            Statement bd = objConnection.CreateStatement();
+            String laRequete = "SELECT surfp, numzone FROM etalp WHERE nump="+this.getNum();
+            ResultSet request=bd.executeQuery(laRequete);
+            if(request.next()){
+                this.setSurface(request.getInt(1));
+                this.numZone=request.getInt(2);   
+                trouve=true;
+            } else {
+                System.out.println("valeur non trouvé");
+                trouve=false;
+            }
+        } catch(ClassNotFoundException | SQLException e){
+            throw new ErreurSurEtalage("les données n'ont pas pur être chargées");
         }
         
         
